@@ -5,7 +5,7 @@ Learn Module Federation Fundamentals
 1. Create Container Application & Run it in webpack [Vue2]
 2. Create MFE 1 Application & Run it in webpack [React]
 3. Create MFE 2 Application & Run it in webpack [Vue3]
----
+
 ## Create Container Application & Run it in webpack [Vue2]
 #### 1 - Create Container App
 `vue create container`
@@ -118,4 +118,7 @@ module.exports = {
 ```
 #### 8 - serve container app 
 `npm run _serve` 
----
+
+## Create MFE 1 Application & Run it in webpack [React]
+#### 1 - Create MFE 1 App
+`npx create-react-app mfe1`
