@@ -2,6 +2,8 @@
 Learn Module Federation Fundamentals
 
 # Reproduce Steps
+
+## First Create Container Application & Run it in webpack [Vue2]
 #### 1 - Create Container App
 `vue create container`
 
@@ -112,4 +114,5 @@ module.exports = {
 };
 ```
 #### 8 - serve container app 
-`npm run _serve`
+`npm run _serve` <br>
+---
