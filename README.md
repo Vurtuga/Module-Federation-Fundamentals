@@ -9,7 +9,20 @@ Learn Module Federation Fundamentals
 `npm install webpack webpack-cli webpack-dev-server html-webpack-plugin --save-dev`
 
 #### 3 - Create webpack.config file to serve Container app 
-
+```
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+module.exports = {
+    mode : 'development',
+    devServer:{
+        port:8081
+    },
+    plugins:[
+        new HtmlWebpackPlugin({
+            template: './public/index.html'
+        }),
+    ],
+};
+```
 #### 4 - Add webpack serve command in scripts in package.json file
 ```
 "scripts": {
