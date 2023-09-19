@@ -2,5 +2,5 @@
 Learn Module Federation Fundamentals
 
 # Application Steps
-## 1 - Create Container App ----------------
+#### 1 - Create Container App ----------------
 vue create container
