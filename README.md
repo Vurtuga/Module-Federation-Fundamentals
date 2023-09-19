@@ -11,6 +11,6 @@ Learn Module Federation Fundamentals
 #### 3 - Create webpack.config file to serve Container app 
 
 #### 4 - Add webpack serve command in scripts in package.json file
-` ``scripts``: {
-    ``_serve``: ``webpack serve``
-},`
+```"scripts": {
+    "_serve": "webpack serve"
+},```
