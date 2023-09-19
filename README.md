@@ -114,5 +114,6 @@ module.exports = {
 };
 ```
 #### 8 - serve container app 
-`npm run _serve` <br>
+`npm run _serve` 
+
 ---
