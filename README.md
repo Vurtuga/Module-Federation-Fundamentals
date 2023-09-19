@@ -67,8 +67,8 @@ module.exports = {
     ],
 };
 ```
-#### 7 - install style-loader, css-loader , sass-loader to handel loading style files and install file-loader to handle loading files in webpack add these loader in webpack config file
-`npm install style-loader css-loader sass-loader file-loader --save-dev`
+#### 7 - install style-loader, css-loader  to handel loading style files and install file-loader to handle loading files in webpack add these loader in webpack config file
+`npm install style-loader css-loader file-loader --save-dev`
 ```
 const path = require("path");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -100,8 +100,8 @@ module.exports = {
                 use: 'vue-loader'
             },
             {
-                test: /\.scss|\.css$/,
-                use: ['style-loader','css-loader','sass-loader']
+                test: /\.css$/,
+                use: ['style-loader','css-loader']
             }
         ],
     },
@@ -122,3 +122,120 @@ module.exports = {
 ## Create MFE 1 Application & Run it in webpack [React]
 #### 1 - Create MFE 1 App
 `npx create-react-app mfe1`
+
+#### 2 - Install [ webpack , webpack-cli , webpack-dev-server  html-webpack-plugin ] as dev dependencies 
+`npm install webpack webpack-cli webpack-dev-server html-webpack-plugin --save-dev`
+
+#### 3 - Create webpack.config file to serve Container app 
+```
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+module.exports = {
+    mode : 'development',
+    devServer:{
+        port:8082
+    },
+    plugins:[
+        new HtmlWebpackPlugin({
+            template: './public/index.html'
+        }),
+    ],
+};
+```
+#### 4 - Add webpack serve command in scripts in package.json file
+```
+"scripts": {
+    "_serve": "webpack serve"
+},
+```
+#### 5 - Install Babel Loader Plugin to help webpack read JSX files
+`npm install babel-loader --save-dev`
+```
+const path = require("path");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+module.exports = {
+    mode : 'development',
+    entry: path.resolve(__dirname, "./src/index.js"),
+    output:{
+        publicPath: `http://localhost:8082/`,
+    },
+    devServer:{
+        port:8082
+    },
+    module:{
+        rules: [
+            {
+                test: /\.m?js$/,
+                exclude: /node_modules/,
+                use:{
+                    loader:'babel-loader',
+                    options:{
+                        presets: ['@babel/preset-react','@babel/preset-env'],
+                        plugins: ['@babel/plugin-transform-runtime'],
+                    }
+                }
+            }
+        ],
+    },
+    plugins:[
+        new HtmlWebpackPlugin({
+            template: './public/index.html'
+        }),
+    ],
+};
+```
+
+#### 7 - install style-loader, css-loader to handel loading style files and install file-loader to handle loading files in webpack add these loader in webpack config file
+`npm install style-loader css-loader file-loader --save-dev`
+```
+const path = require("path");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+module.exports = {
+    mode : 'development',
+    entry: path.resolve(__dirname, "./src/index.js"),
+    output:{
+        publicPath: `http://localhost:8082/`,
+    },
+    devServer:{
+        port:8082
+    },
+    module:{
+        rules: [
+            {
+                test: /\.(png|jpe?g|gif|woff|svg|eot|ttf)$/i,
+                use: [
+                    { 
+                        loader: 'file-loader',
+                        options: {
+                            esModule: false
+                        }
+                    }
+                ]
+            },
+            {
+                test: /\.css$/,
+                use: ['style-loader','css-loader']
+            },
+            {
+                test: /\.m?js$/,
+                exclude: /node_modules/,
+                use:{
+                    loader:'babel-loader',
+                    options:{
+                        presets: ['@babel/preset-react','@babel/preset-env'],
+                        plugins: ['@babel/plugin-transform-runtime'],
+                    }
+                }
+            }
+        ],
+    },
+    plugins:[
+        new HtmlWebpackPlugin({
+            template: './public/index.html'
+        }),
+    ],
+};
+```
+
+#### 9 - serve mfe1 app 
+`npm run _serve` 
+##### Note : After running app i get React undefined error and after research for this error i found that i need to add `import React from 'react';` in every react component.

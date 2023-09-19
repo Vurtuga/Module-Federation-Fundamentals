@@ -1,14 +1,13 @@
 const path = require("path");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { VueLoaderPlugin } = require('vue-loader');
 module.exports = {
     mode : 'development',
-    entry: path.resolve(__dirname, "./src/main.js"),
+    entry: path.resolve(__dirname, "./src/index.js"),
     output:{
-        publicPath: `http://localhost:8081/`,
+        publicPath: `http://localhost:8082/`,
     },
     devServer:{
-        port:8081
+        port:8082
     },
     module:{
         rules: [
@@ -24,22 +23,25 @@ module.exports = {
                 ]
             },
             {
-                test: /\.vue$/,
-                use: 'vue-loader'
-            },
-            {
                 test: /\.css$/,
                 use: ['style-loader','css-loader']
+            },
+            {
+                test: /\.m?js$/,
+                exclude: /node_modules/,
+                use:{
+                    loader:'babel-loader',
+                    options:{
+                        presets: ['@babel/preset-react','@babel/preset-env'],
+                        plugins: ['@babel/plugin-transform-runtime'],
+                    }
+                }
             }
         ],
     },
     plugins:[
         new HtmlWebpackPlugin({
-            template: './public/index.html',
-            templateParameters:{
-                BASE_URL: `http://localhost:8081/`
-            }
+            template: './public/index.html'
         }),
-        new VueLoaderPlugin()
     ],
 };
