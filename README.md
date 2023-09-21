@@ -241,8 +241,11 @@ module.exports = {
 ##### Note : After running app I get React undefined error and after research for this error i found that i need to add `import React from 'react';` in every react component & it runs Perfect.
 
 ## Apply Module Federation in Container Application
-#### 1 - Add Module Federation in Plugins in webpack 
-we are going to add module federation plugin and set these options :
+#### 1 - Add Module Federation in Plugins in webpack
+First we need to import module federation :
+`const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');`
+
+Second we are going to add module federation plugin and set these options :
 1. name : name of application module , In our case will be named "container"
 2. remotes : object to map names of remote applications with urls where they are hosted , we need to load mfe1 application so we will add it in remotes object. 
 
@@ -306,3 +309,20 @@ module.exports = {
     ],
 };
 ```
+#### 2 - Rename main.js file to bootstrap.js and create new main.js file and import bootstrap.js in it.
+We made this step to insure that all code in bootstrap.js & dependencies are fully loaded before load main.js in browser and to insure that we import bootstrap.js as function not as regular import statement to load it asynchronous not synchronous way.
+##### main.js :
+`import ('./bootstrap.js')`
+##### bootstrap.js :
+```
+import Vue from 'vue'
+import App from './App.vue'
+
+Vue.config.productionTip = false
+
+new Vue({
+  render: h => h(App),
+}).$mount('#app')
+
+```
+
