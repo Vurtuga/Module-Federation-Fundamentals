@@ -364,3 +364,102 @@ export default {
 </style>
 
 ```
+## Apply Module Federation in MFE 1 Application
+#### 1 - Add Module Federation in Plugins in webpack
+First we need to import module federation :
+`const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');`
+
+Second we are going to add module federation plugin and set these options :
+1. name : name of application module , In our case will be named `"mfe1app"`
+2. filename : file name of the remote entry file , we will set it as `'remoteEntry.js'`
+2. exposes : object that map local module names to the modules that sould be exposed to other applications , we need to expose the index file witch contain MFE 1 app entry point. 
+
+##### Object Item :
+`'./mfe1app':'./src/index'`
+we could divide this object it into 2 parts
+1. `./mfe1app` : Alias to call specific file from app.
+2. `./src/index` : path to the file we need to expose.
+
+```js
+const path = require("path");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
+module.exports = {
+    mode : 'development',
+    entry: path.resolve(__dirname, "./src/index.js"),
+    output:{
+        publicPath: `http://localhost:8082/`,
+    },
+    devServer:{
+        port:8082
+    },
+    module:{
+        rules: [
+            {
+                test: /\.(png|jpe?g|gif|woff|svg|eot|ttf)$/i,
+                use: [
+                    { 
+                        loader: 'file-loader',
+                        options: {
+                            esModule: false
+                        }
+                    }
+                ]
+            },
+            {
+                test: /\.css$/,
+                use: ['style-loader','css-loader']
+            },
+            {
+                test: /\.m?js$/,
+                exclude: /node_modules/,
+                use:{
+                    loader:'babel-loader',
+                    options:{
+                        presets: ['@babel/preset-react','@babel/preset-env'],
+                        plugins: ['@babel/plugin-transform-runtime'],
+                    }
+                }
+            }
+        ],
+    },
+    plugins:[
+        new ModuleFederationPlugin({
+            name: 'mfe1app',
+            filename: 'remoteEntry.js',
+            exposes:{
+                './mfe1app':'./src/index'
+            },
+        }),
+        new HtmlWebpackPlugin({
+            template: './public/index.html'
+        }),
+    ],
+};
+```
+
+
+#### 2 - Rename index.js file to bootstrap.js and create new index.js file and import bootstrap.js in it.
+we made this to insure that all imported code going to load asynchronous.
+
+##### index.js :
+`import ('./bootstrap.js')`
+##### bootstrap.js :
+```js
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+
+reportWebVitals();
+```
+
+##### Now we need to run both apps and see the magic :🎉
