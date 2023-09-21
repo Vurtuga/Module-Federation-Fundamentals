@@ -38,7 +38,8 @@ module.exports = {
 
 #### 5 - Install Vue Loader Plugin to solve the compatibility with webpack5 use 
 `npm i vue-loader@15.10.2 --save-dev`
-##### Note : use vue-loader 15 or lower if you using vue 2
+[!NOTE]
+> use vue-loader 15 or lower if you using vue 2
 
 #### 6 - add vue loader in webpack config file as plugin and define it as loader for .vue files & add template parameter called BASE_URL to use in loading fav icon
 ```
@@ -238,7 +239,8 @@ module.exports = {
 ```
 #### 8 - serve mfe1 app 
 `npm run _serve` 
-##### Note : After running app I get React undefined error and after research for this error i found that i need to add `import React from 'react';` in every react component & it runs Perfect.
+[!NOTE]
+> After running app I get React undefined error and after research for this error i found that i need to add `import React from 'react';` in every react component & it runs Perfect.
 
 ## Apply Module Federation in Container Application
 #### 1 - Add Module Federation in Plugins in webpack
