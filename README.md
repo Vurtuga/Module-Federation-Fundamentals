@@ -15,7 +15,7 @@ Learn Module Federation Fundamentals
 `npm install webpack webpack-cli webpack-dev-server html-webpack-plugin --save-dev`
 
 #### 3 - Create webpack.config file to serve Container app 
-```
+```js
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
     mode : 'development',
@@ -30,7 +30,7 @@ module.exports = {
 };
 ```
 #### 4 - Add webpack serve command in scripts in package.json file
-```
+```js
 "scripts": {
     "_serve": "webpack serve"
 },
@@ -42,7 +42,7 @@ module.exports = {
 > use vue-loader 15 or lower if you using vue 2
 
 #### 6 - add vue loader in webpack config file as plugin and define it as loader for .vue files & add template parameter called BASE_URL to use in loading fav icon
-```
+```js
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
 module.exports = {
@@ -71,7 +71,7 @@ module.exports = {
 ```
 #### 7 - install style-loader, css-loader  to handel loading style files and install file-loader to handle loading files in webpack add these loader in webpack config file
 `npm install style-loader css-loader file-loader --save-dev`
-```
+```js
 const path = require("path");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
@@ -129,7 +129,7 @@ module.exports = {
 `npm install webpack webpack-cli webpack-dev-server html-webpack-plugin --save-dev`
 
 #### 3 - Create webpack.config file to serve Container app 
-```
+```js
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
     mode : 'development',
@@ -144,14 +144,14 @@ module.exports = {
 };
 ```
 #### 4 - Add webpack serve command in scripts in package.json file
-```
+```js
 "scripts": {
     "_serve": "webpack serve"
 },
 ```
 #### 5 - Install Babel Loader Plugin to help webpack read JSX files
 `npm install babel-loader --save-dev`
-```
+```js
 const path = require("path");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
@@ -188,7 +188,7 @@ module.exports = {
 
 #### 7 - install style-loader, css-loader to handel loading style files and install file-loader to handle loading files in webpack add these loader in webpack config file
 `npm install style-loader css-loader file-loader --save-dev`
-```
+```js
 const path = require("path");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
@@ -257,7 +257,7 @@ we could divide this object it into 3 parts
 1. `mfe1` : Key to refer to mfe1app project in container app
 2. `mfe1app` : name of mfe1 application defined in mfe1 project webpack config file in module federation name option.
 3. `@http://localhost:8082/remoteEntry.js'` : Url for the remoteEntry file
-```
+```js
 const path = require("path");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
@@ -316,7 +316,7 @@ We made this step to insure that all code in bootstrap.js & dependencies are ful
 ##### main.js :
 `import ('./bootstrap.js')`
 ##### bootstrap.js :
-```
+```js
 import Vue from 'vue'
 import App from './App.vue'
 
@@ -331,7 +331,7 @@ new Vue({
 #### 3 - Add 'div' element to render react project in it and import emf1 project in App.vue file
 
 ##### App.vue file After Changes :
-```
+```vue
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
