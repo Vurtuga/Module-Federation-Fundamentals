@@ -243,8 +243,15 @@ module.exports = {
 ## Apply Module Federation in Container Application
 #### 1 - Add Module Federation in Plugins in webpack 
 we are going to add module federation plugin and set these options :
-1. name : name of application module.
-2. remotes : object to map names of remote applications with urls where they are hosted.
+1. name : name of application module , In our case will be named "container"
+2. remotes : object to map names of remote applications with urls where they are hosted , we need to load mfe1 application so we will add it in remotes object. 
+
+##### Object Item :
+`mfe1: 'mfe1app@http://localhost:8082/remoteEntry.js'`
+we could divide this object it into 3 parts
+1. `mfe1` : Key to refer to mfe1app project in container app
+2. `mfe1app` : name of mfe1 application defined in mfe1 project webpack config file in module federation name option.
+3. `@http://localhost:8082/remoteEntry.js'` : Url for the remoteEntry file
 ```
 const path = require("path");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
