@@ -39,8 +39,6 @@ module.exports = {
             name: 'container',
             remotes :{
                 mfe1: 'mfe1app@http://localhost:8082/remoteEntry.js'
-               /*  dashboard: 'dashboard@http://localhost:8081/remoteEntry.js', */
-                /* shared: 'shared@'+process.env.SharedURL+'/remoteEntry.js', */
             }
         }),
         new HtmlWebpackPlugin({
