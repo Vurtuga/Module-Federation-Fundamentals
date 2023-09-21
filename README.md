@@ -235,7 +235,6 @@ module.exports = {
     ],
 };
 ```
-
-#### 9 - serve mfe1 app 
+#### 8 - serve mfe1 app 
 `npm run _serve` 
-##### Note : After running app i get React undefined error and after research for this error i found that i need to add `import React from 'react';` in every react component.
+##### Note : After running app I get React undefined error and after research for this error i found that i need to add `import React from 'react';` in every react component & it runs Perfect.

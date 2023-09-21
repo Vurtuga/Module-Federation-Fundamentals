@@ -1,6 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
+const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
 module.exports = {
     mode : 'development',
     entry: path.resolve(__dirname, "./src/main.js"),
@@ -34,6 +35,14 @@ module.exports = {
         ],
     },
     plugins:[
+        new ModuleFederationPlugin({
+            name: 'container',
+            remotes :{
+                mfe1: 'mfe1app@http://localhost:8082/remoteEntry.js'
+               /*  dashboard: 'dashboard@http://localhost:8081/remoteEntry.js', */
+                /* shared: 'shared@'+process.env.SharedURL+'/remoteEntry.js', */
+            }
+        }),
         new HtmlWebpackPlugin({
             template: './public/index.html',
             templateParameters:{
