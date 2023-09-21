@@ -27,13 +27,11 @@
       <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
       <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
     </ul>
-    <div id="root"></div>
   </div>
- 
 </template>
 
 <script>
-import 'mfe1/mfe1app';
+
 export default {
   name: 'HelloWorld',
   props: {
