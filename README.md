@@ -251,7 +251,7 @@ Second we are going to add module federation plugin and set these options :
 1. name : name of application module , In our case will be named "container"
 2. remotes : object to map names of remote applications with urls where they are hosted , we need to load mfe1 application so we will add it in remotes object. 
 
-##### Object Item :
+**Object Item** :
 `mfe1: 'mfe1app@http://localhost:8082/remoteEntry.js'`
 we could divide this object it into 3 parts
 1. `mfe1` : Key to refer to mfe1app project in container app
@@ -313,9 +313,9 @@ module.exports = {
 ```
 #### 2 - Rename main.js file to bootstrap.js and create new main.js file and import bootstrap.js in it.
 We made this step to insure that all code in bootstrap.js & dependencies are fully loaded before load main.js in browser and to insure that we import bootstrap.js as function not as regular import statement to load it asynchronous not synchronous way.
-##### main.js :
+**main.js** :
 `import ('./bootstrap.js')`
-##### bootstrap.js :
+**bootstrap.js** :
 ```js
 import Vue from 'vue'
 import App from './App.vue'
@@ -330,7 +330,7 @@ new Vue({
 
 #### 3 - Add 'div' element to render react project in it and import emf1 project in App.vue file
 
-##### App.vue file After Changes :
+**App.vue file After Changes** :
 ```vue
 <template>
   <div id="app">
@@ -374,7 +374,7 @@ Second we are going to add module federation plugin and set these options :
 2. filename : file name of the remote entry file , we will set it as `'remoteEntry.js'`
 2. exposes : object that map local module names to the modules that sould be exposed to other applications , we need to expose the index file witch contain MFE 1 app entry point. 
 
-##### Object Item :
+**Object Item** :
 `'./mfe1app':'./src/index'`
 we could divide this object it into 2 parts
 1. `./mfe1app` : Alias to call specific file from app.
@@ -442,9 +442,9 @@ module.exports = {
 #### 2 - Rename index.js file to bootstrap.js and create new index.js file and import bootstrap.js in it.
 we made this to insure that all imported code going to load asynchronous.
 
-##### index.js :
+**index.js** :
 `import ('./bootstrap.js')`
-##### bootstrap.js :
+**bootstrap.js** :
 ```js
 import React from 'react';
 import ReactDOM from 'react-dom/client';
@@ -462,4 +462,4 @@ root.render(
 reportWebVitals();
 ```
 
-** Now we need to run both apps and see the Magic Happens **  🎉
+**Now we need to run both apps and see the Magic Happens**  🎉
