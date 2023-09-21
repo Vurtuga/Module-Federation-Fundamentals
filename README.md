@@ -30,7 +30,7 @@ module.exports = {
 };
 ```
 #### 4 - Add webpack serve command in scripts in package.json file
-```js
+```json
 "scripts": {
     "_serve": "webpack serve"
 },
@@ -144,7 +144,7 @@ module.exports = {
 };
 ```
 #### 4 - Add webpack serve command in scripts in package.json file
-```js
+```json
 "scripts": {
     "_serve": "webpack serve"
 },
