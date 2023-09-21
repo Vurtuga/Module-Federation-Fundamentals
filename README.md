@@ -462,4 +462,4 @@ root.render(
 reportWebVitals();
 ```
 
-##### Now we need to run both apps and see the magic :🎉
+##### Now we need to run both apps and see the Magic Happens  🎉
